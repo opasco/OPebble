@@ -5,6 +5,19 @@
   </head>
   <body>
     <p>Round and Smart Settings page</p>
-    <input id='submit_button' type='button' value='Save'>
+    <div class='item-container'>
+      <div class='button-container'>
+        <input id='submit_button' type='button' class='item-button' value='SAVE'>
+      </div>
+    </div>
   </body>
+  <script>
+  var submitButton = document.getElementById('submit_button');
+  submitButton.addEventListener('click', function() {
+    console.log('Submit');
+    // Set the return URL depending on the runtime environment
+    var return_to = getQueryParam('return_to', 'pebblejs://close#');
+    document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
+  });
+  </script>
 </html>
