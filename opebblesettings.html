@@ -7,21 +7,19 @@
     <h1>Round and Smart - Settings</h1>
     
     Coming soon, hopefully...
-    <!--
+    
     <div class='item-container'>
       <div class='item-container-header'>Features</div>
       <div class='item-container-content'>
         <label class='item'>
-          Rain Forecast
-          <input id='rain_forecast_checkbox' type='checkbox' class='item-toggle'>
+          Display Compass
+          <input id='use_compass_checkbox' type='checkbox' class='item-toggle'>
         </label>
       </div>
       <div class='item-container-footer'>
         Show Rain 3H Forecast
       </div>
     </div>
-
-  -->
 
      <div class='item-container'>
       <div class='button-container'>
@@ -32,13 +30,13 @@
   </body>
   <script>
   function getConfigData() {
-    var rainForecastCheckbox = document.getElementById('rain_forecast_checkbox');
+    var useCompass = document.getElementById('use_compass_checkbox');
  
     var options = {
-      'rain_forecast': rainForecastCheckbox.checked
+      'useCompass': useCompass.checked
     };
     // Save for next launch
-    localStorage['rain_forecast'] = options['rain_forecast'];
+    localStorage['useCompass'] = options['useCompass'];
     console.log('Got options: ' + JSON.stringify(options));
     return options;
   }
@@ -63,10 +61,10 @@
   });
 
   (function() {
-    var rainForecastCheckbox = document.getElementById('rain_forecast_checkbox');
+    var useCompass = document.getElementById('use_compass_checkbox');
     // Load any previously saved configuration, if available
-    if(localStorage['rain_forecast']) {
-      rainForecastCheckbox.checked = JSON.parse(localStorage['rain_forecast']);
+    if(localStorage['useCompass']) {
+      useCompass.checked = JSON.parse(localStorage['useCompass']);
     }
   })();
   </script>
