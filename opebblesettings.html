@@ -16,6 +16,7 @@
           <input id='use_compass_checkbox' type='checkbox' class='item-toggle'>
           Display Compass (may impact battery)
         </label>
+        </br>
         <label class='item'>
           <input id='use_debug_checkbox' type='checkbox' class='item-toggle'>
           Display Debug Messages
@@ -36,7 +37,7 @@
     var useCompass = document.getElementById('use_compass_checkbox');
  
     var options = {
-      'useCompass': useCompass.checked
+      'useCompass': useCompass.checked,
       'useDebug': useDebug.checked
     };
     // Save for next launch
