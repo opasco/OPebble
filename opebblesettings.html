@@ -11,6 +11,16 @@
       <div class='item-container-header'><h3>Features</h3></div>
       <div class='item-container-content'>
         <label class='item'>
+          <input id='use_date_checkbox' type='checkbox' class='item-toggle'>
+          Display Date
+        </label>
+        </br>
+        <label class='item'>
+          <input id='use_health_checkbox' type='checkbox' class='item-toggle'>
+          Display Steps and Activity
+        </label>
+        </br>
+        <label class='item'>
           <input id='use_compass_checkbox' type='checkbox' class='item-toggle'>
           Display Compass (may impact battery)
         </label>
@@ -32,14 +42,20 @@
   </body>
   <script>
   function getConfigData() {
+    var useHealth = document.getElementById('use_health_checkbox');
+    var useDate = document.getElementById('use_date_checkbox');
     var useCompass = document.getElementById('use_compass_checkbox');
     var useDebug = document.getElementById('use_debug_checkbox');
  
     var options = {
+      'useDate': useDate.checked,
+      'useHealth': useHealth.checked
       'useCompass': useCompass.checked,
       'useDebug': useDebug.checked
     };
     // Save for next launch
+    localStorage['useDate'] = options['useDate'];
+    localStorage['useHealth'] = options['useHealth'];
     localStorage['useCompass'] = options['useCompass'];
     localStorage['useDebug'] = options['useDebug'];
     console.log('Got options: ' + JSON.stringify(options));
@@ -66,9 +82,17 @@
   });
 
   (function() {
+    var useHealth = document.getElementById('use_health_checkbox');
+    var useDate = document.getElementById('use_date_checkbox');
     var useCompass = document.getElementById('use_compass_checkbox');
     var useDebug = document.getElementById('use_debug_checkbox');
     // Load any previously saved configuration, if available
+    if(localStorage['useDate']) {
+      useDate.checked = JSON.parse(localStorage['useDate']);
+    }
+    if(localStorage['useHealth']) {
+      useHealth.checked = JSON.parse(localStorage['useHealth']);
+    }
     if(localStorage['useCompass']) {
       useCompass.checked = JSON.parse(localStorage['useCompass']);
     }
