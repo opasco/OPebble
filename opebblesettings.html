@@ -39,6 +39,11 @@
         </label>
         </br>
         <label class='item'>
+          <input id='use_vibrations_checkbox' type='checkbox' class='item-toggle'>
+          Vibration warnings
+        </label>
+        </br>
+        <label class='item'>
           <input id='use_debug_checkbox' type='checkbox' class='item-toggle'>
           Display Debug Messages
         </label>
@@ -59,6 +64,7 @@
     var useDate = document.getElementById('use_date_checkbox');
     var useCompass = document.getElementById('use_compass_checkbox');
     var useDebug = document.getElementById('use_debug_checkbox');
+    var useVibrations = document.getElementById('use_vibrations_checkbox');
     var useDualTime = document.getElementById('use_dualtime_checkbox');
     var dualTimeOffset = document.getElementById('dualtimeoffset_number');
     var dualTimeDST = document.getElementById('dualtimedst_checkbox');
@@ -68,6 +74,7 @@
       'useHealth': useHealth.checked,
       'useCompass': useCompass.checked,
       'useDebug': useDebug.checked,
+      'useVibrations': useVibrations.checked,
       'useDualTime': useDualTime.checked,
       'dualTimeOffset': dualTimeOffset.value,
       'dualTimeDST': dualTimeDST.checked
@@ -80,6 +87,7 @@
     localStorage['useHealth'] = options['useHealth'];
     localStorage['useCompass'] = options['useCompass'];
     localStorage['useDebug'] = options['useDebug'];
+    localStorage['useVibrations'] = options['useVibrations'];
     console.log('Got options: ' + JSON.stringify(options));
     return options;
   }
@@ -107,6 +115,7 @@
     var useHealth = document.getElementById('use_health_checkbox');
     var useDate = document.getElementById('use_date_checkbox');
     var useCompass = document.getElementById('use_compass_checkbox');
+    var useVibrations = document.getElementById('use_vibrations_checkbox');
     var useDebug = document.getElementById('use_debug_checkbox');
     var useDualTime = document.getElementById('use_dualtime_checkbox');
     var dualTimeOffset = document.getElementById('dualtimeoffset_number');
@@ -133,6 +142,9 @@
     }
     if(localStorage['useDebug']) {
       useDebug.checked = JSON.parse(localStorage['useDebug']);
+    }
+    if(localStorage['useVibrations']) {
+      useDebug.checked = JSON.parse(localStorage['useVibrations']);
     }
   })();
   </script>
