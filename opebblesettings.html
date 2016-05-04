@@ -16,6 +16,20 @@
         </label>
         </br>
         <label class='item'>
+          <input id='use_dualtime_checkbox' type='checkbox' class='item-toggle'>
+          Display Dual Time
+        </label>
+        <label class='item'>
+          <input id='dualtimeoffset_number' type='number' min="-12" max="12" class='item-toggle'>
+          UTC Offset
+        </label>
+        <label class='item'>
+          <input id='dualtimedst_checkbox' type='checkbox' class='item-toggle'>
+          DST
+        </label>
+        (coming soon)
+        </br>
+        <label class='item'>
           <input id='use_health_checkbox' type='checkbox' class='item-toggle'>
           Display Steps and Activity
         </label>
@@ -46,15 +60,24 @@
     var useDate = document.getElementById('use_date_checkbox');
     var useCompass = document.getElementById('use_compass_checkbox');
     var useDebug = document.getElementById('use_debug_checkbox');
+    var useDualTime = document.getElementById('use_dualtime_checkbox');
+    var dualTimeOffset = document.getElementById('dualtimeoffset_number');
+    var dualTimeDST = document.getElementById('dualtimedst_checkbox');
  
     var options = {
       'useDate': useDate.checked,
       'useHealth': useHealth.checked,
       'useCompass': useCompass.checked,
-      'useDebug': useDebug.checked
+      'useDebug': useDebug.checked,
+      'useDualTime': useDualTime.checked,
+      'dualTimeOffset': dualTimeOffset.value,
+      'dualTimeDST': dualTimeDST.checked
     };
     // Save for next launch
     localStorage['useDate'] = options['useDate'];
+    localStorage['useDualTime'] = options['useDualTime'];
+    localStorage['dualTimeOffset'] = options['dualTimeOffset'];
+    localStorage['dualTimeDST'] = options['dualTimeDST'];
     localStorage['useHealth'] = options['useHealth'];
     localStorage['useCompass'] = options['useCompass'];
     localStorage['useDebug'] = options['useDebug'];
@@ -86,9 +109,22 @@
     var useDate = document.getElementById('use_date_checkbox');
     var useCompass = document.getElementById('use_compass_checkbox');
     var useDebug = document.getElementById('use_debug_checkbox');
+    var useDualTime = document.getElementById('use_dualtime_checkbox');
+    var dualTimeOffset = document.getElementById('dualtimeoffset_number');
+    var dualTimeDST = document.getElementById('dualtimedst_checkbox');
+
     // Load any previously saved configuration, if available
     if(localStorage['useDate']) {
       useDate.checked = JSON.parse(localStorage['useDate']);
+    }
+    if(localStorage['useDualTime']) {
+      useDualTime.checked = JSON.parse(localStorage['useDualTime']);
+    }
+    if(localStorage['dualTimeOffset']) {
+      dualTimeOffset.value = JSON.parse(localStorage['dualTimeOffset']);
+    }
+    if(localStorage['dualTimeDST']) {
+      dualTimeDST.checked = JSON.parse(localStorage['dualTimeDST']);
     }
     if(localStorage['useHealth']) {
       useHealth.checked = JSON.parse(localStorage['useHealth']);
