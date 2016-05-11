@@ -32,6 +32,14 @@
           <input id='use_health_checkbox' type='checkbox' class='item-toggle'>
           Display Steps and Activity
         </label>
+        <label class='item'>
+          <input id='dailystepsmanualgoal_number' type='number' defaultValue="0" min="0" class='item-number'>
+          Daily Steps Goal
+        </label>
+        <label class='item'>
+          <input id='dailyactivitymanualgoal_number' type='number' defaultValue="0" min="0" class='item-number'>
+          Daily Activity Goal (in hours) - 0 for Automatic (coming soon)
+        </label>
         </br>
         <label class='item'>
           <input id='use_compass_checkbox' type='checkbox' class='item-toggle'>
@@ -61,6 +69,8 @@
   <script>
   function getConfigData() {
     var useHealth = document.getElementById('use_health_checkbox');
+    var dailyStepsManualGoal = document.getElementById('dailystepsmanualgoal_number');
+    var dailyActivityManualGoal = document.getElementById('dailyactivitymanualgoal_number');
     var useDate = document.getElementById('use_date_checkbox');
     var useCompass = document.getElementById('use_compass_checkbox');
     var useDebug = document.getElementById('use_debug_checkbox');
@@ -72,6 +82,8 @@
     var options = {
       'useDate': useDate.checked,
       'useHealth': useHealth.checked,
+      'dailyStepsManualGoal': dailyStepsManualGoal.value,
+      'dailyActivityManualGoal': dailyActivityManualGoal.value,
       'useCompass': useCompass.checked,
       'useDebug': useDebug.checked,
       'useVibrations': useVibrations.checked,
@@ -85,6 +97,8 @@
     localStorage['dualTimeOffset'] = options['dualTimeOffset'];
     localStorage['dualTimeDST'] = options['dualTimeDST'];
     localStorage['useHealth'] = options['useHealth'];
+    localStorage['dailyStepsManualGoal'] = options['dailyStepsManualGoal'];
+    localStorage['dailyActivityManualGoal'] = options['dailyActivityManualGoal'];
     localStorage['useCompass'] = options['useCompass'];
     localStorage['useDebug'] = options['useDebug'];
     localStorage['useVibrations'] = options['useVibrations'];
@@ -113,6 +127,8 @@
 
   (function() {
     var useHealth = document.getElementById('use_health_checkbox');
+    var dailyStepsManualGoal = document.getElementById('dailystepsmanualgoal_number');
+    var dailyActivityManualGoal = document.getElementById('dailyactivitymanualgoal_number');
     var useDate = document.getElementById('use_date_checkbox');
     var useCompass = document.getElementById('use_compass_checkbox');
     var useVibrations = document.getElementById('use_vibrations_checkbox');
@@ -142,6 +158,12 @@
     }
     else {
       useHealth.checked = 1;
+    }
+    if(localStorage['dailyStepsManualGoal']) {
+      dailyStepsManualGoal.value = JSON.parse(localStorage['dailyStepsManualGoal']);
+    }
+    if(localStorage['dailyActivityManualGoal']) {
+      dailyActivityManualGoal.value = JSON.parse(localStorage['dailyActivityManualGoal']);
     }
     if(localStorage['useCompass']) {
       useCompass.checked = JSON.parse(localStorage['useCompass']);
