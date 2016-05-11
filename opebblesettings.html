@@ -125,6 +125,9 @@
     if(localStorage['useDate']) {
       useDate.checked = JSON.parse(localStorage['useDate']);
     }
+    else {
+      useDate.checked = 1;
+    }
     if(localStorage['useDualTime']) {
       useDualTime.checked = JSON.parse(localStorage['useDualTime']);
     }
@@ -136,6 +139,9 @@
     }
     if(localStorage['useHealth']) {
       useHealth.checked = JSON.parse(localStorage['useHealth']);
+    }
+    else {
+      useHealth.checked = 1;
     }
     if(localStorage['useCompass']) {
       useCompass.checked = JSON.parse(localStorage['useCompass']);
