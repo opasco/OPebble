@@ -20,7 +20,7 @@
           Display Dual Time
         </label>
         <label class='item'>
-          <input id='dualtimeoffset_number' type='number' defaultValue="0" min="-12" max="12" class='item-number'>
+          <input id='dualtimeoffset_number' type='number' defaultValue="0" min="-12" max="12" maxlength="5" class='item-number'>
           UTC Offset
         </label>
         <label class='item'>
@@ -33,11 +33,11 @@
           Display Steps and Activity
         </label>
         <label class='item'>
-          <input id='dailystepsmanualgoal_number' type='number' defaultValue="0" min="0" class='item-number'>
+          <input id='dailystepsmanualgoal_number' type='number' defaultValue="0" min="0" MAX="999999" maxlength="8" class='item-number'>
           Daily Steps Goal
         </label>
         <label class='item'>
-          <input id='dailyactivitymanualgoal_number' type='number' defaultValue="0" min="0" class='item-number'>
+          <input id='dailyactivitymanualgoal_number' type='number' defaultValue="0" min="0" max="24" maxlength="3" class='item-number'>
           Daily Activity Goal (in hours) - 0 for Automatic (coming soon)
         </label>
         </br>
@@ -150,6 +150,9 @@
     if(localStorage['dualTimeOffset']) {
       dualTimeOffset.value = JSON.parse(localStorage['dualTimeOffset']);
     }
+    else {
+      dualTimeOffset.value = 0;
+    }
     if(localStorage['dualTimeDST']) {
       dualTimeDST.checked = JSON.parse(localStorage['dualTimeDST']);
     }
@@ -162,8 +165,14 @@
     if(localStorage['dailyStepsManualGoal']) {
       dailyStepsManualGoal.value = JSON.parse(localStorage['dailyStepsManualGoal']);
     }
+    else {
+      dailyStepsManualGoal.value = 0;
+    }
     if(localStorage['dailyActivityManualGoal']) {
       dailyActivityManualGoal.value = JSON.parse(localStorage['dailyActivityManualGoal']);
+    }
+    else {
+      dailyActivityManualGoal.value = 0;
     }
     if(localStorage['useCompass']) {
       useCompass.checked = JSON.parse(localStorage['useCompass']);
