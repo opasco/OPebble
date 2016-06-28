@@ -49,6 +49,11 @@
         </label>
         </br>
         <label class='item'>
+          <input id='use_darkbg_checkbox' type='checkbox' class='item-toggle'>
+          Use Dark Background
+        </label>
+        </br>
+        <label class='item'>
           <input id='use_vibrations_checkbox' type='checkbox' class='item-toggle'>
           Vibration warnings
         </label>
@@ -80,6 +85,7 @@
     var useDualTime = document.getElementById('use_dualtime_checkbox');
     var dualTimeOffset = document.getElementById('dualtimeoffset_number');
     var dualTimeDST = document.getElementById('dualtimedst_checkbox');
+    var useDarkBg = document.getElementById('use_darkbg_checkbox');
  
     var options = {
       'useDate': useDate.checked,
@@ -91,7 +97,8 @@
       'useVibrations': useVibrations.checked,
       'useDualTime': useDualTime.checked,
       'dualTimeOffset': dualTimeOffset.value,
-      'dualTimeDST': dualTimeDST.checked
+      'dualTimeDST': dualTimeDST.checked,
+      'useDarkBg': useDarkBg.checked
     };
     // Save for next launch
     localStorage['useDate'] = options['useDate'];
@@ -104,6 +111,7 @@
     localStorage['useCompass'] = options['useCompass'];
     localStorage['useDebug'] = options['useDebug'];
     localStorage['useVibrations'] = options['useVibrations'];
+    localStorage['useDarkBg'] = options['useDarkBg'];
     console.log('Got options: ' + JSON.stringify(options));
     return options;
   }
@@ -138,6 +146,7 @@
     var useDualTime = document.getElementById('use_dualtime_checkbox');
     var dualTimeOffset = document.getElementById('dualtimeoffset_number');
     var dualTimeDST = document.getElementById('dualtimedst_checkbox');
+    var useDarkBg = document.getElementById('use_darkbg_checkbox');
 
     // Load any previously saved configuration, if available
     if(localStorage['useDate']) {
@@ -184,6 +193,9 @@
     }
     if(localStorage['useVibrations']) {
       useVibrations.checked = JSON.parse(localStorage['useVibrations']);
+    }
+    if(localStorage['useDarkBg']) {
+      useDarkBg.checked = JSON.parse(localStorage['useDarkBg']);
     }
   })();
   </script>
